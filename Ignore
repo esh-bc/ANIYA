@@ -1,0 +1,21 @@
+bot.py                        ← main entry
+config.py                     ← config vars
+requirements.txt              ← dependencies
+railway.json                  ← Railway deploy
+Procfile                      ← fallback start
+.env.example                  ← env template
+.gitignore                    ← git ignore
+database/db.py                ← DB connection
+database/models.py            ← all DB functions
+handlers/auth.py              ← /start /auth
+handlers/browse.py            ← recent + all
+handlers/anime.py             ← detail + delete
+handlers/delivery.py          ← file sender
+handlers/search.py            ← search + inline
+handlers/admin.py             ← upload + keys
+utils/keyboards.py            ← all buttons
+utils/captions.py             ← auto captions
+utils/tmdb.py                 ← TMDB fetcher
+utils/progress.py             ← progress bar
+.github/workflows/run_bot.yml ← GitHub Actions
+README.md                     ← full guide

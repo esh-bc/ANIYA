@@ -1,0 +1,36 @@
+name: ✦ Run Anime Bot
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  run-bot:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: ◈ Checkout repository
+        uses: actions/checkout@v4
+
+      - name: ◈ Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: ◈ Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: ◈ Create .env file from secrets
+        run: |
+          echo "BOT_TOKEN=${{ secrets.BOT_TOKEN }}" >> .env
+          echo "MONGO_URI=${{ secrets.MONGO_URI }}" >> .env
+          echo "TMDB_API_KEY=${{ secrets.TMDB_API_KEY }}" >> .env
+          echo "STORAGE_CHANNEL=${{ secrets.STORAGE_CHANNEL }}" >> .env
+          echo "ADMIN_IDS=${{ secrets.ADMIN_IDS }}" >> .env
+
+      - name: ◈ Start bot
+        run: python bot.py

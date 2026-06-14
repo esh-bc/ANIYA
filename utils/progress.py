@@ -1,0 +1,38 @@
+import asyncio
+
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+#  ◈ PROGRESS BAR ANIMATOR
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+STEPS = [
+    (0,   "◌ ◌ ◌ ◌ ◌ ◌ ◌ ◌ ◌ ◌",  "0%"),
+    (10,  "◉ ◌ ◌ ◌ ◌ ◌ ◌ ◌ ◌ ◌",  "10%"),
+    (20,  "◉ ◉ ◌ ◌ ◌ ◌ ◌ ◌ ◌ ◌",  "20%"),
+    (30,  "◉ ◉ ◉ ◌ ◌ ◌ ◌ ◌ ◌ ◌",  "30%"),
+    (40,  "◉ ◉ ◉ ◉ ◌ ◌ ◌ ◌ ◌ ◌",  "40%"),
+    (50,  "◉ ◉ ◉ ◉ ◉ ◌ ◌ ◌ ◌ ◌",  "50%"),
+    (60,  "◉ ◉ ◉ ◉ ◉ ◉ ◌ ◌ ◌ ◌",  "60%"),
+    (70,  "◉ ◉ ◉ ◉ ◉ ◉ ◉ ◌ ◌ ◌",  "70%"),
+    (80,  "◉ ◉ ◉ ◉ ◉ ◉ ◉ ◉ ◌ ◌",  "80%"),
+    (90,  "◉ ◉ ◉ ◉ ◉ ◉ ◉ ◉ ◉ ◌",  "90%"),
+    (100, "◉ ◉ ◉ ◉ ◉ ◉ ◉ ◉ ◉ ◉",  "Done~ ✦"),
+]
+
+def progress_text(bar: str, label: str) -> str:
+    return (
+        "✦ Fetching data for you~ ♡\n"
+        "━━━━━━━━━━━━━━━━━━━━━━━━\n"
+        f"{bar}  {label}"
+    )
+
+async def animate_progress(message):
+    """
+    Edits message through progress bar steps.
+    Pass a telegram Message object.
+    """
+    for _, bar, label in STEPS:
+        try:
+            await message.edit_text(progress_text(bar, label))
+        except Exception:
+            pass
+        await asyncio.sleep(0.4)

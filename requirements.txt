@@ -1,0 +1,6 @@
+python-telegram-bot==22.7
+pymongo==4.7.3
+dnspython==2.6.1
+requests==2.32.3
+python-dotenv==1.0.1
+APScheduler==3.10.4
